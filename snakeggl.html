@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="gbk">
-		<title>Ì°³ÔÉß-¹Î¹ÎÀÖ</title>
+		<meta charset="utf-8">
+		<title>è´ªåƒè›‡-åˆ®åˆ®ä¹</title>
 		<style type="text/css">
 			#pannelBack{width:960px; height:1280px; }
 		</style>		
@@ -17,26 +17,26 @@
 		</div>	
 	</body>
 	<script type="text/javascript">
-			//Ò³ÃæÔªËØ£¬Í¼Æ¬¼ÓÔØ
+			//é¡µé¢å…ƒç´ ï¼Œå›¾ç‰‡åŠ è½½
 			var c=document.getElementById("myCanvas");
 			var ctx=c.getContext("2d");
-			//Éß
+			//è›‡
 			var snake=[{x:2,y:0},{x:1,y:0},{x:0,y:0}];
 			var LEFT=37;
 			var RIGHT=39;
 			var UP=38;
 			var DOWN=40;
-			//²Ù×÷·½Ïò
+			//æ“ä½œæ–¹å‘
 			var direction=RIGHT;
-			//µ±Ç°ÉßµÄÒÆ¶¯·½Ïò
+			//å½“å‰è›‡çš„ç§»åŠ¨æ–¹å‘
 			var currentDirection=RIGHT;
-			//Ñ­»·ÒÆ¶¯
+			//å¾ªç¯ç§»åŠ¨
 			var loopMove;
 			var fruit={};
 			function init(){
 				ctx.fillStyle="#FFF";
 				ctx.fillRect(0,0,960,1280);
-				//»æÖÆ·½¸ñ
+				//ç»˜åˆ¶æ–¹æ ¼
 				for(var i=0;i<13;i++){
 					ctx.moveTo(80*i,0);
 					ctx.lineTo(80*i,1280);
@@ -47,13 +47,13 @@
 					ctx.lineTo(960,80*i);
 					ctx.stroke();
 				}		
-				var picture="ggl_"+(makeRandom(1)+1)+".jpg";
+				var picture="ggl("+(makeRandom(14)+1)+").jpg";
 				document.getElementById("pannelBack").src=picture;
 				paint(snake);
 				createFruit();
 				loopMove=window.setInterval(move,400);
 			}
-			//ÒÆ¶¯Éß
+			//ç§»åŠ¨è›‡
 			function move(){	
 				currentDirection=direction;
 				switch(direction){
@@ -95,14 +95,14 @@
 				ctx.clearRect(tail.x*80,tail.y*80,80,80 );								
 				paint(snake);
 			}
-			//»æÖÆÉß
+			//ç»˜åˆ¶è›‡
 			function paint(snake){
 				ctx.fillStyle='#00F';
 				for(var i=0;i<snake.length;i++){
 					ctx.fillRect(snake[i].x*80,snake[i].y*80,80,80);
 				}				
 			}
-			//´´½¨Ë®¹û
+			//åˆ›å»ºæ°´æœ
 			function createFruit(){
 				var cover=false;
 				do{
@@ -119,23 +119,23 @@
 				ctx.fillRect(fruit.x*80,fruit.y*80,80,80);				
 			}
 			function gameover(){
-				//alert("ÓÎÏ·½áÊø");
-				setTimeout(function(){alert("ÓÎÏ·½áÊø")},0);
+				//alert("æ¸¸æˆç»“æŸ");
+				setTimeout(function(){alert("æ¸¸æˆç»“æŸ")},0);
 				window.clearInterval(loopMove);
 			}		
-			//ÊÖÖ¸·Åµ½ÆÁÄ»ÉÏÊ±,´¥ÃşµãÏà¶Ôä¯ÀÀÆ÷´°¿ÚµÄÎ»ÖÃ
+			//æ‰‹æŒ‡æ”¾åˆ°å±å¹•ä¸Šæ—¶,è§¦æ‘¸ç‚¹ç›¸å¯¹æµè§ˆå™¨çª—å£çš„ä½ç½®
 			var startX=0;
 			var startY=0;
 			var endX=0;
 			var endY=0;
-			//ÊÖÖ¸·Åµ½ÆÁÄ»ÉÏÊ±´¥·¢
+			//æ‰‹æŒ‡æ”¾åˆ°å±å¹•ä¸Šæ—¶è§¦å‘
 			function startT(ev){
 				startX=ev.touches[0].clientX;
 				startY=ev.touches[0].clientY;
 				//divStart.innerHTML='Touch start('+ev.touches[0].clientX+', '+ev.touches[0].clientY+')';
-				ev.preventDefault();  //×èÖ¹³öÏÖ¹ö¶¯Ìõ 
+				ev.preventDefault();  //é˜»æ­¢å‡ºç°æ»šåŠ¨æ¡ 
 			}
-			//ÊÖÖ¸Àë¿ªÆÁÄ»Ê±´¥·¢
+			//æ‰‹æŒ‡ç¦»å¼€å±å¹•æ—¶è§¦å‘
 			function endT(ev){
 				//alert("touchend");
 				endX=ev.changedTouches[0].clientX;
@@ -143,7 +143,7 @@
 				//divEnd.innerHTML='Touch end('+ev.changedTouches[0].clientX+', '+ev.changedTouches[0].clientY+')'; 
 				doAction();
 			}
-			//ÅĞ¶Ï´¥ÆÁÊÖÖ¸»¬¶¯·½Ïò
+			//åˆ¤æ–­è§¦å±æ‰‹æŒ‡æ»‘åŠ¨æ–¹å‘
 			function doAction(){
 				if(startX > endX && (startX-endX) > Math.abs(startY-endY)){
 					if(currentDirection!=RIGHT){
@@ -166,7 +166,7 @@
 					}					
 				}	
 			}
-			//´¦Àí¼üÅÌÊÂ¼ş¿ØÖÆ·½Ïò
+			//å¤„ç†é”®ç›˜äº‹ä»¶æ§åˆ¶æ–¹å‘
 			function moveByKey(){
 				switch(event.keyCode){
 					case 37:
@@ -193,7 +193,7 @@
 						break;
 				}											
 			}
-			//°ó¶¨¼àÌıÊÂ¼ş
+			//ç»‘å®šç›‘å¬äº‹ä»¶
 			document.addEventListener('touchstart',startT,false); 
 			document.addEventListener('touchend',endT,false); 
 			document.addEventListener('keydown',moveByKey,false); 
